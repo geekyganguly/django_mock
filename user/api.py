@@ -225,10 +225,7 @@ class Profile(APIView):
 
     @swagger_auto_schema(
         operation_description='Update profile.',
-        manual_parameters=[
-            keys.HEADER_TOKEN,
-            keys.QUERY_PARAM_USER_ID,
-        ],
+        manual_parameters=[keys.HEADER_TOKEN],
         request_body=ProfileSerializer,
         responses={
             '200': openapi.Response(
@@ -244,25 +241,14 @@ class Profile(APIView):
         }
     )
     def put(self, request):
-        user_id = request.GET.get(keys.USER_ID, None)
-
-        if not user_id:
-            return response.response_400(error=f'{keys.USER_ID} is required.')
-
-        try:
-            instance = User.objects.get(id=user_id)
-            serializer = ProfileSerializer(
-                instance=instance,
-                data=request.data,
-                context={keys.REQUEST: request},
-                partial=True
-            )
-            if serializer.is_valid():
-                serializer.save()
-                return response.response_200(message='Profile updated.')
-            else:
-                return response.response_400(error=serializer.errors)
-        except ObjectDoesNotExist:
-            return response.response_404()
-        except Exception as error:
-            return response.response_400(error=str(error))
+        serializer = ProfileSerializer(
+            instance=request.user,
+            data=request.data,
+            context={keys.REQUEST: request},
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return response.response_200(message='Profile updated.')
+        else:
+            return response.response_400(error=serializer.errors)
