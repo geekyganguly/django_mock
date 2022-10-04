@@ -35,10 +35,12 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0)),
     path('django-admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 urlpatterns += [
     path('user/', include('user.urls')),
+    path('blog/', include('blog.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

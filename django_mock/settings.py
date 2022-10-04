@@ -48,11 +48,13 @@ INSTALLED_APPS += [
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
     'corsheaders',
+    'tinymce',
 ]
 
 # Created Application
 INSTALLED_APPS += [
     'user.apps.UserConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [

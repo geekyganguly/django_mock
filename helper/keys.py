@@ -20,6 +20,8 @@ REFRESH_TOKEN = 'refresh_token'
 USER = 'user'
 USER_ID = 'user_id'
 
+BLOG_ID = 'blog_id'
+
 EMAIL = 'email'
 MOBILE = 'mobile'
 PASSWORD = 'password'
@@ -76,5 +78,13 @@ QUERY_PARAM_USER_ID = openapi.Parameter(
     openapi.IN_QUERY,
     description='Ex-12',
     type=openapi.TYPE_INTEGER,
-    required=True
+    required=False
+)
+
+QUERY_PARAM_BLOG_ID = openapi.Parameter(
+    BLOG_ID,
+    openapi.IN_QUERY,
+    description='Ex-12',
+    type=openapi.TYPE_INTEGER,
+    required=False
 )
