@@ -13,3 +13,6 @@ class User(AbstractUser, ModelUpdateMixin):
     def __str__(self):
         return self.username
 
+    @property
+    def full_name(self):
+        return self.get_full_name()
