@@ -58,7 +58,7 @@ class Register(APIView):
             }
             return response.response_200(data=data)
         else:
-            return response.response_400(error=str(serializer.errors))
+            return response.response_400(error=serializer.errors)
 
 
 class Login(APIView):
@@ -106,7 +106,7 @@ class Login(APIView):
             }
             return response.response_200(data=data)
         else:
-            return response.response_400(error=str(serializer.errors))
+            return response.response_400(error=serializer.errors)
 
 
 class ChangePassword(APIView):
