@@ -249,6 +249,6 @@ class Profile(APIView):
         )
         if serializer.is_valid():
             serializer.save()
-            return response.response_200(message='Profile updated.')
+            return response.response_200(data=serializer.data, message='Profile updated.')
         else:
             return response.response_400(error=serializer.errors)
